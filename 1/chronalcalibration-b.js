@@ -21,23 +21,19 @@ function calc(err, fileContent) {
     
             var value = Number(line, 10);
             result += value;
-    
-            if (!firstFrequencyReachedTwice) {
-                var frequencyAlreadyReached = reachedFrequencies.find((curvalue, index, array) => {
-                    return curvalue == result;
-                });
-    
-                if (frequencyAlreadyReached) {
-                    firstFrequencyReachedTwice = frequencyAlreadyReached;
-                } else {
-                    reachedFrequencies.push(result);
-                }
+
+            var frequencyAlreadyReached = reachedFrequencies.find((curvalue, index, array) => {
+                return curvalue == result;
+            });
+
+            if (frequencyAlreadyReached) {
+                firstFrequencyReachedTwice = frequencyAlreadyReached;
+                break;
+            } else {
+                reachedFrequencies.push(result);
             }
         }
     }
 
-    
-
-    console.log('Result = ' + result);
     console.log('First frequency reached twice = ' + firstFrequencyReachedTwice);
 }
